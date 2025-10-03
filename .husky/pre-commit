@@ -1,0 +1,9 @@
+#!/bin/bash
+
+npx commitlint --from=HEAD~1 --to=HEAD || exit 1
+
+# npm test || exit 1
+
+npm run lint || exit 1
+
+npm run build || exit 1
