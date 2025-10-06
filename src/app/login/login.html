@@ -1,1 +1,35 @@
-<p>login works!</p>
+<app-card>
+  <h2 class="text-2xl font-bold text-center mb-6">Login</h2>
+  <form [formGroup]="form" (ngSubmit)="onSubmit()">
+    <div class="mb-4">
+      <label for="email" class="block text-gray-600 mb-1">Email</label>
+      <input
+        id="email"
+        type="email"
+        formControlName="email"
+        class="w-full border p-2 rounded-md"
+        placeholder="user@example.com"
+      />
+    </div>
+
+    <div class="mb-6">
+      <label for="password" class="block text-gray-600 mb-1">Password</label>
+      <input
+        id="password"
+        type="password"
+        formControlName="password"
+        class="w-full border p-2 rounded-md"
+        placeholder="••••••••"
+      />
+    </div>
+
+    <button
+      type="submit"
+      [disabled]="loading()"
+      class="w-full bg-blue-600 hover:bg-blue-700 text-white py-2 rounded-md transition-all"
+    >
+      {{ loading() ? 'Logging in...' : 'Login' }}
+    </button>
+  </form>
+  <p *ngIf="error()" class="text-red-500 text-center mt-4">{{ error() }}</p>
+</app-card>

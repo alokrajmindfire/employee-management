@@ -1,17 +1,17 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { BottomNav } from './bottom-nav';
+import { NotFound } from './not-found';
 
-describe('BottomNav', () => {
-  let component: BottomNav;
-  let fixture: ComponentFixture<BottomNav>;
+describe('NotFound', () => {
+  let component: NotFound;
+  let fixture: ComponentFixture<NotFound>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [BottomNav],
+      imports: [NotFound],
     }).compileComponents();
 
-    fixture = TestBed.createComponent(BottomNav);
+    fixture = TestBed.createComponent(NotFound);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
