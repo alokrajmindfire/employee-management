@@ -1,6 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { Component, inject } from '@angular/core';
-import { Auth } from '../../core/services/auth';
+import { Auth } from '../../core/services/auth-service/auth';
 
 @Component({
   selector: 'app-user-menu',

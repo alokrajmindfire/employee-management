@@ -1,24 +1,24 @@
-<app-card>
-  <h2 class="text-2xl font-bold text-center mb-6">Login</h2>
+<app-card class="rounded-md shadow-md p-6">
+  <h2 class="text-2xl font-bold text-center mb-6 text-gray-900 dark:text-white">Login</h2>
   <form [formGroup]="form" (ngSubmit)="onSubmit()">
     <div class="mb-4">
-      <label for="email" class="block text-gray-600 mb-1">Email</label>
+      <label for="email" class="block text-gray-600 dark:text-gray-300 mb-1">Email</label>
       <input
         id="email"
         type="email"
         formControlName="email"
-        class="w-full border p-2 rounded-md"
+        class="w-full border p-2 rounded-md text-gray-900 dark:text-gray-200 bg-white dark:bg-gray-700 border-gray-300 dark:border-gray-600"
         placeholder="user@example.com"
       />
     </div>
 
     <div class="mb-6">
-      <label for="password" class="block text-gray-600 mb-1">Password</label>
+      <label for="password" class="block text-gray-600 dark:text-gray-300 mb-1">Password</label>
       <input
         id="password"
         type="password"
         formControlName="password"
-        class="w-full border p-2 rounded-md"
+        class="w-full border p-2 rounded-md text-gray-900 dark:text-gray-200 bg-white dark:bg-gray-700 border-gray-300 dark:border-gray-600"
         placeholder="••••••••"
       />
     </div>
@@ -26,7 +26,7 @@
     <button
       type="submit"
       [disabled]="loading()"
-      class="w-full bg-blue-600 hover:bg-blue-700 text-white py-2 rounded-md transition-all"
+      class="w-full bg-blue-600 hover:bg-blue-700 text-white py-2 rounded-md transition-all dark:bg-blue-500 dark:hover:bg-blue-600"
     >
       {{ loading() ? 'Logging in...' : 'Login' }}
     </button>

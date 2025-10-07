@@ -13,7 +13,9 @@
 
       <div class="flex items-center gap-3">
         <app-user-menu></app-user-menu>
-        <button class="p-2 rounded-md bg-gray-200 dark:bg-gray-700">🌓</button>
+        <button (click)="toggleTheme()" class="p-2 rounded-md bg-gray-200 dark:bg-gray-700">
+          {{ currentTheme === 'dark' ? '🌞' : '🌙' }}
+        </button>
       </div>
     </div>
   </div>
