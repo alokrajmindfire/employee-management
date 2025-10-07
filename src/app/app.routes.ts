@@ -16,7 +16,7 @@ export const routes: Routes = [
       {
         path: 'task',
         pathMatch: 'full',
-        loadComponent: () => import('./pages/home/home').then((m) => m.Home),
+        loadComponent: () => import('./pages/task/task').then((m) => m.TasksPage),
       },
     ],
     canActivate: [AuthGuard],
