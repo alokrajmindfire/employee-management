@@ -9,7 +9,6 @@ import { Card } from '../component/card/card';
   selector: 'app-login',
   imports: [CommonModule, ReactiveFormsModule, Card],
   templateUrl: './login.html',
-  styleUrl: './login.css',
 })
 export class Login {
   private fb = inject(FormBuilder);

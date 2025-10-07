@@ -7,7 +7,6 @@ import { ThemeService } from '../../core/services/theme-service/theme-service';
   selector: 'app-header',
   imports: [NavLinks, UserMenu],
   templateUrl: './header.html',
-  styleUrl: './header.css',
 })
 export class Header {
   private themeService = inject(ThemeService);

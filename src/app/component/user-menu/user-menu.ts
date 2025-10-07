@@ -6,7 +6,6 @@ import { Auth } from '../../core/services/auth-service/auth';
   selector: 'app-user-menu',
   imports: [CommonModule],
   templateUrl: './user-menu.html',
-  styleUrl: './user-menu.css',
 })
 export class UserMenu {
   private auth = inject(Auth);
