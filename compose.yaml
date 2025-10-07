@@ -1,0 +1,13 @@
+services:
+  angular:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: employee_management
+    ports:
+      - '3001:80'
+    develop:
+      watch:
+        - action: sync
+          path: .
+          target: /app
