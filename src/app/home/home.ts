@@ -5,8 +5,6 @@ import { Header } from '../component/header/header';
   selector: 'app-home',
   imports: [Header],
   templateUrl: './home.html',
-  styleUrl: './home.css'
+  styleUrl: './home.css',
 })
-export class Home {
-
-}
+export class Home {}
