@@ -1,9 +1,9 @@
 import { Component, inject, signal } from '@angular/core';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { CommonModule } from '@angular/common';
-import { Auth } from '../core/services/auth-service/auth';
+import { Auth } from '../../core/services/auth-service/auth';
 import { Router } from '@angular/router';
-import { Card } from '../component/card/card';
+import { Card } from '../../component/card/card';
 
 @Component({
   selector: 'app-login',
@@ -35,8 +35,9 @@ export class Login {
         this.router.navigate(['/']);
         this.loading.set(false);
       },
-      error: () => {
-        this.error.set('Invalid credentials');
+      error: (e) => {
+        console.log(e);
+        this.error.set(e.error.error || 'Invalid credentials');
         this.loading.set(false);
       },
     });
