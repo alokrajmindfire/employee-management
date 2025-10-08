@@ -1,0 +1,13 @@
+<div class="flex gap-3 mb-4 justify-center mt-4">
+  @for (f of filters; track $index) {
+    <button
+      (click)="apply(f)"
+      [class.bg-blue-600]="activeFilter() === f"
+      [class.text-white]="activeFilter() === f"
+      [class.border-blue-600]="activeFilter() === f"
+      class="px-3 py-1 rounded border border-gray-300 transition-colors"
+    >
+      {{ f | titlecase }}
+    </button>
+  }
+</div>

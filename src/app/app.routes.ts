@@ -11,12 +11,12 @@ export const routes: Routes = [
       {
         path: '',
         pathMatch: 'full',
-        loadComponent: () => import('./home/home').then((m) => m.Home),
+        loadComponent: () => import('./pages/home/home').then((m) => m.Home),
       },
       {
         path: 'task',
         pathMatch: 'full',
-        loadComponent: () => import('./home/home').then((m) => m.Home),
+        loadComponent: () => import('./pages/task/task').then((m) => m.TasksPage),
       },
     ],
     canActivate: [AuthGuard],
@@ -24,12 +24,12 @@ export const routes: Routes = [
   {
     path: 'login',
     pathMatch: 'full',
-    loadComponent: () => import('./login/login').then((m) => m.Login),
+    loadComponent: () => import('./pages/login/login').then((m) => m.Login),
     canActivate: [NoAuthGuard],
   },
   {
     path: '**',
     pathMatch: 'full',
-    loadComponent: () => import('./not-found/not-found').then((m) => m.NotFound),
+    loadComponent: () => import('./pages/not-found/not-found').then((m) => m.NotFound),
   },
 ];
