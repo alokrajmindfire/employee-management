@@ -4,10 +4,11 @@ import { CommonModule } from '@angular/common';
 import { Auth } from '../../core/services/auth-service/auth';
 import { Router } from '@angular/router';
 import { Card } from '../../component/card/card';
+import { Theme } from '../../component/theme/theme';
 
 @Component({
   selector: 'app-login',
-  imports: [CommonModule, ReactiveFormsModule, Card],
+  imports: [CommonModule, ReactiveFormsModule, Card, Theme],
   templateUrl: './login.html',
 })
 export class Login {
