@@ -14,7 +14,7 @@ export const routes: Routes = [
         loadComponent: () => import('./pages/home/home').then((m) => m.Home),
       },
       {
-        path: 'task',
+        path: 'tasks',
         pathMatch: 'full',
         loadComponent: () => import('./pages/task/task').then((m) => m.TasksPage),
       },
@@ -26,6 +26,23 @@ export const routes: Routes = [
     pathMatch: 'full',
     loadComponent: () => import('./pages/login/login').then((m) => m.Login),
     canActivate: [NoAuthGuard],
+  },
+  {
+    path: 'leaves',
+    component: ProtectedLayout,
+    children: [
+      {
+        path: '',
+        pathMatch: 'full',
+        loadComponent: () => import('./pages/leave/leave-list/leave-list').then((m) => m.LeaveList),
+      },
+      {
+        path: 'apply',
+        pathMatch: 'full',
+        loadComponent: () => import('./pages/leave/leave-form/leave-form').then((m) => m.LeaveForm),
+      },
+    ],
+    canActivate: [AuthGuard],
   },
   {
     path: '**',
