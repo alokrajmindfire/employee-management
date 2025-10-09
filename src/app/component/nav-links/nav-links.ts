@@ -14,6 +14,7 @@ interface NavLink {
 export class NavLinks {
   links: NavLink[] = [
     { label: 'Home', path: '/', icon: '🏠' },
-    { label: 'Tasks', path: '/task', icon: '📝' },
+    { label: 'Tasks', path: '/tasks', icon: '📝' },
+    { label: 'Leave', path: '/leaves', icon: '📝' },
   ];
 }

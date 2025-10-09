@@ -14,7 +14,7 @@
 </nav>
 
 <nav
-  class="fixed bottom-0 left-0 w-full border-t bg-white dark:bg-gray-900 flex justify-around py-2 md:hidden"
+  class="fixed bottom-0 left-0 w-full border-t bg-white dark:bg-gray-900 flex justify-around py-2 md:hidden gap-2"
   aria-label="Mobile Navigation"
 >
   @for (link of links; track $index) {
@@ -23,7 +23,7 @@
         [routerLink]="link.path"
         routerLinkActive="text-blue-600"
         [routerLinkActiveOptions]="{ exact: true }"
-        class="flex flex-col items-center text-gray-600 dark:text-gray-300"
+        class="flex flex-col items-center text-gray-600 dark:text-gray-300 w-full border"
         [attr.aria-label]="link.label"
       >
         <span class="text-xl">{{ link.icon }}</span>
