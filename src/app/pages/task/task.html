@@ -1,4 +1,6 @@
-<h2 class="text-2xl font-semibold my-4 text-center">Task Manager</h2>
-<app-task-form />
-<app-task-filter (filterChange)="onFilterChange($event)" />
-<app-task-list />
+<div class="min-h-screen px-4 pb-20">
+  <h2 class="text-2xl font-semibold my-4 text-center">Task Manager</h2>
+  <app-task-form />
+  <app-task-filter (filterChange)="onFilterChange($event)" />
+  <app-task-list />
+</div>
