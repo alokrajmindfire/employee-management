@@ -8,6 +8,7 @@ import { Theme } from '../../component/theme/theme';
 
 @Component({
   selector: 'app-login',
+  standalone:true,
   imports: [CommonModule, ReactiveFormsModule, Card, Theme],
   templateUrl: './login.html',
 })

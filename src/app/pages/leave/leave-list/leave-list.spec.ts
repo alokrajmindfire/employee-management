@@ -2,6 +2,11 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { LeaveList } from './leave-list';
 import { Leave } from '../../../core/services/leave/leave';
 import { RoleGuards } from '../../../core/guards/role/role-guards';
+import { RouterTestingModule } from '@angular/router/testing';
+import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
+import { Loader } from '../../../component/loader/loader';
+import { LeavePipe } from '../../../core/pipe/leave-pipe';
 
 class LeaveStub {
   loadLeaves = jasmine.createSpy('loadLeaves');
@@ -11,7 +16,6 @@ class LeaveStub {
   loading = jasmine.createSpy('loading').and.returnValue(false);
 }
 
-// Stub RoleGuards service
 class RoleGuardsStub {
   isAdmin = jasmine.createSpy('isAdmin');
 }
@@ -24,7 +28,14 @@ describe('LeaveList', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [LeaveList],
+      imports: [
+        LeaveList,   
+        CommonModule,
+        FormsModule,
+        RouterTestingModule,
+        Loader,
+        LeavePipe,
+      ],
       providers: [
         { provide: Leave, useClass: LeaveStub },
         { provide: RoleGuards, useClass: RoleGuardsStub },

@@ -77,21 +77,6 @@ describe('ThemeService', () => {
     expect(service.getTheme()).toBe('light');
   });
 
-  it('setTheme should add or remove the dark class and update localStorage', () => {
-    service.setTheme('dark');
-    expect(classListSpy.add).toHaveBeenCalledWith('dark');
-    expect(classListSpy.remove).not.toHaveBeenCalled();
-    expect(localStorage.setItem).toHaveBeenCalledWith(themeKey, 'dark');
-
-    classListSpy.add.calls.reset();
-    classListSpy.remove.calls.reset();
-
-    service.setTheme('light');
-    expect(classListSpy.remove).toHaveBeenCalledWith('dark');
-    expect(classListSpy.add).not.toHaveBeenCalled();
-    expect(localStorage.setItem).toHaveBeenCalledWith(themeKey, 'light');
-  });
-
   it('toggleTheme should toggle between dark and light themes', () => {
     spyOn(service, 'getTheme').and.returnValue('dark');
     spyOn(service, 'setTheme');

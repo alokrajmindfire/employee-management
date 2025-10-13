@@ -15,7 +15,7 @@ export class LeaveForm {
   private leaveService = inject(Leave);
   private location = inject(Location);
   form = this.fb.group({
-    date: ['', Validators.required, futureDateValidator()],
+    date: ['', [Validators.required, futureDateValidator()]], // <-- fixed
     type: ['Sick', Validators.required],
     reason: ['', [Validators.required, Validators.minLength(5)]],
   });
@@ -31,7 +31,11 @@ export class LeaveForm {
     };
 
     this.leaveService.addLeave(leave);
-    this.form.reset({ type: 'Sick' });
+    this.form.reset({
+    date: '',
+    type: 'Sick',
+    reason: ''
+  });
   }
   goBack(): void {
     this.location.back();
@@ -42,4 +46,5 @@ export class LeaveForm {
   year = this.today.getFullYear();
 
   minDate = new Date();
+  
 }

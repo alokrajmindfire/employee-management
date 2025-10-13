@@ -9,7 +9,6 @@ class LeaveStub {
   addLeave = jasmine.createSpy('addLeave');
 }
 
-// Stub Location service
 class LocationStub {
   back = jasmine.createSpy('back');
 }
@@ -46,33 +45,36 @@ describe('LeaveForm', () => {
     expect(component.form.valid).toBeFalse();
   });
 
-  it('form should be valid when filled correctly', () => {
-    component.form.setValue({
-      date: '2099-12-31',
-      type: 'Sick',
-      reason: 'Feeling ill for few days',
-    });
-    expect(component.form.valid).toBeTrue();
+it('form should be valid when filled correctly', () => {
+  component.form.setValue({
+    date: '2099-12-31',
+    type: 'Sick',
+    reason: 'Feeling ill for a few days',
+  });
+  expect(component.form.valid).toBeTrue();
+});
+
+it('should call addLeave and reset form on submit if form is valid', () => {
+  const leaveData = {
+    date: '2099-12-31',
+    type: 'Annual',
+    reason: 'Vacation time',
+  };
+
+  component.form.setValue(leaveData);
+  component.submit();
+
+  expect(leaveService.addLeave).toHaveBeenCalledWith({
+    ...leaveData,
+    status: 'Pending',
   });
 
-  it('should call addLeave and reset form on submit if form is valid', () => {
-    const leaveData = {
-      date: '2099-12-31',
-      type: 'Annual',
-      reason: 'Vacation time',
-    };
-    component.form.setValue(leaveData);
-    component.submit();
-
-    expect(leaveService.addLeave).toHaveBeenCalledWith({
-      date: leaveData.date,
-      type: leaveData.type,
-      reason: leaveData.reason,
-      status: 'Pending',
-    });
-
-    expect(component.form.value.type).toBe('Sick'); // reset defaults type to Sick
+  expect(component.form.value).toEqual({
+    date: '',
+    type: 'Sick',
+    reason: '',
   });
+});
 
   it('should NOT call addLeave on submit if form is invalid', () => {
     component.form.setValue({
