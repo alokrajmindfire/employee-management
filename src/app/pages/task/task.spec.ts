@@ -1,22 +1,36 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { TasksPage } from './task';
+import { Task } from '../../core/services/task/task';
 
-import { Task } from './task';
-
-describe('Task', () => {
-  let component: Task;
-  let fixture: ComponentFixture<Task>;
+describe('TasksPage', () => {
+  let component: TasksPage;
+  let fixture: ComponentFixture<TasksPage>;
+  let taskServiceSpy: jasmine.SpyObj<Task>;
 
   beforeEach(async () => {
+    const spy = jasmine.createSpyObj('Task', ['loadTasks', 'setFilter']);
+
     await TestBed.configureTestingModule({
-      imports: [Task],
+      imports: [TasksPage],
+      providers: [{ provide: Task, useValue: spy }],
     }).compileComponents();
 
-    fixture = TestBed.createComponent(Task);
+    fixture = TestBed.createComponent(TasksPage);
     component = fixture.componentInstance;
-    fixture.detectChanges();
+    taskServiceSpy = TestBed.inject(Task) as jasmine.SpyObj<Task>;
   });
 
   it('should create', () => {
     expect(component).toBeTruthy();
+  });
+
+  it('should call loadTasks on init', () => {
+    component.ngOnInit();
+    expect(taskServiceSpy.loadTasks).toHaveBeenCalled();
+  });
+
+  it('should call setFilter when onFilterChange is called', () => {
+    component.onFilterChange('completed');
+    expect(taskServiceSpy.setFilter).toHaveBeenCalledWith('completed');
   });
 });

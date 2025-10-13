@@ -14,7 +14,7 @@
   </div>
 
   @if (leaveService.loading()) {
-    <div class="text-center py-6 text-gray-500 dark:text-gray-300">Loading...</div>
+    <app-loader />
   } @else {
     <div class="space-y-4">
       @for (leave of leaveService.leaves(); track $index) {

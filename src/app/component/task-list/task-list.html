@@ -1,6 +1,6 @@
 <div class="dark:bg-gray-800 dark:text-white">
   @if (store.loading()) {
-    <p class="text-gray-500 text-center">Loading tasks...</p>
+    <app-loader message="Loading tasks..." />
   } @else if (store.tasks().length === 0) {
     <div class="text-gray-500 text-center">No tasks found.</div>
   } @else {
