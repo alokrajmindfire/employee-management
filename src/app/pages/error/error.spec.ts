@@ -1,17 +1,17 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { NotFound } from './not-found';
+import { Error } from './error';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { RouterTestingModule } from '@angular/router/testing';
-describe('NotFound', () => {
-  let component: NotFound;
-  let fixture: ComponentFixture<NotFound>;
+describe('Error', () => {
+  let component: Error;
+  let fixture: ComponentFixture<Error>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [NotFound, HttpClientTestingModule, RouterTestingModule],
+      imports: [Error, HttpClientTestingModule, RouterTestingModule],
     }).compileComponents();
 
-    fixture = TestBed.createComponent(NotFound);
+    fixture = TestBed.createComponent(Error);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

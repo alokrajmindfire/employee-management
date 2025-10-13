@@ -45,6 +45,11 @@ export const routes: Routes = [
     canActivate: [AuthGuard],
   },
   {
+    path: 'error',
+    pathMatch: 'full',
+    loadComponent: () => import('./pages/error/error').then((m) => m.Error),
+  },
+  {
     path: '**',
     pathMatch: 'full',
     loadComponent: () => import('./pages/not-found/not-found').then((m) => m.NotFound),
