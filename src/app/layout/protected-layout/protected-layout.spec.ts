@@ -1,5 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { ProtectedLayout } from './protected-layout';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
+import { RouterTestingModule } from '@angular/router/testing';
 
 describe('ProtectedLayout', () => {
   let component: ProtectedLayout;
@@ -7,7 +9,7 @@ describe('ProtectedLayout', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [ProtectedLayout], // Import standalone component
+      imports: [ProtectedLayout, HttpClientTestingModule, RouterTestingModule],
     }).compileComponents();
 
     fixture = TestBed.createComponent(ProtectedLayout);

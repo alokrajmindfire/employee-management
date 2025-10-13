@@ -9,7 +9,6 @@ class LeaveStub {
   addLeave = jasmine.createSpy('addLeave');
 }
 
-// Stub Location service
 class LocationStub {
   back = jasmine.createSpy('back');
 }
@@ -50,7 +49,7 @@ describe('LeaveForm', () => {
     component.form.setValue({
       date: '2099-12-31',
       type: 'Sick',
-      reason: 'Feeling ill for few days',
+      reason: 'Feeling ill for a few days',
     });
     expect(component.form.valid).toBeTrue();
   });
@@ -61,17 +60,20 @@ describe('LeaveForm', () => {
       type: 'Annual',
       reason: 'Vacation time',
     };
+
     component.form.setValue(leaveData);
     component.submit();
 
     expect(leaveService.addLeave).toHaveBeenCalledWith({
-      date: leaveData.date,
-      type: leaveData.type,
-      reason: leaveData.reason,
+      ...leaveData,
       status: 'Pending',
     });
 
-    expect(component.form.value.type).toBe('Sick'); // reset defaults type to Sick
+    expect(component.form.value).toEqual({
+      date: '',
+      type: 'Sick',
+      reason: '',
+    });
   });
 
   it('should NOT call addLeave on submit if form is invalid', () => {
