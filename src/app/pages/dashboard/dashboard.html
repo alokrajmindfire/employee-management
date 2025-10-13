@@ -1,14 +1,16 @@
 <div class="max-w-6xl mx-auto p-6">
-  @if (error) {
-    <div class="bg-red-50 border border-red-200 text-red-700 p-4 rounded">
-      {{ error }}
-    </div>
-  }
-
-  @if (!loading && !error) {
-    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-      <div class="flex flex-col gap-2 space-y-4">
-        <app-card>
+  <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+    <div class="flex flex-col gap-2 space-y-4">
+      <app-card>
+        @if (tasksLoading) {
+          <app-loader message="Loading tasks..."></app-loader>
+        }
+        @if (tasksError && !tasksLoading) {
+          <p class="text-red-500 text-sm text-center">
+            {{ tasksError }}
+          </p>
+        }
+        @if (!tasksLoading && !tasksError) {
           <h3 class="text-sm text-gray-500 dark:text-gray-400">Tasks</h3>
           <div class="flex items-center justify-between mt-2">
             <div>
@@ -24,9 +26,43 @@
               <div class="text-xs text-gray-500 dark:text-gray-400">Pending</div>
             </div>
           </div>
-        </app-card>
+        }
+      </app-card>
+      <app-card>
+        @if (tasksLoading) {
+          <app-loader message="Loading tasks..."></app-loader>
+        }
+        @if (tasksError && !tasksLoading) {
+          <p class="text-red-500 text-sm text-center">
+            {{ tasksError }}
+          </p>
+        }
+        @if (!tasksLoading && !tasksError) {
+          <h3 class="text-sm text-gray-500 dark:text-gray-400 mb-3">Tasks: Completed vs Pending</h3>
+          <div class="">
+            <canvas
+              baseChart
+              [data]="tasksChartData"
+              [options]="tasksChartOptions"
+              chartType="doughnut"
+            ></canvas>
+          </div>
+        }
+      </app-card>
+    </div>
 
-        <app-card>
+    <div class="flex flex-col gap-2 space-y-6">
+      <app-card>
+        @if (leavesLoading) {
+          <app-loader message="Loading leaves..."></app-loader>
+        }
+        @if (leavesError && !leavesLoading) {
+          <p class="text-red-500 text-sm text-center">
+            {{ leavesError }}
+          </p>
+        }
+
+        @if (!leavesLoading && !leavesError) {
           <h3 class="text-sm text-gray-500 dark:text-gray-400">Leaves</h3>
           <div class="flex items-center justify-between mt-2">
             <div>
@@ -42,23 +78,20 @@
               <div class="text-xs text-gray-500 dark:text-gray-400">Pending</div>
             </div>
           </div>
-        </app-card>
-      </div>
+        }
+      </app-card>
 
-      <div class="flex flex-col gap-2 space-y-6">
-        <app-card>
-          <h3 class="text-sm text-gray-500 dark:text-gray-400 mb-3">Tasks: Completed vs Pending</h3>
-          <div class="">
-            <canvas
-              baseChart
-              [data]="tasksChartData"
-              [options]="tasksChartOptions"
-              chartType="doughnut"
-            ></canvas>
-          </div>
-        </app-card>
+      <app-card>
+        @if (leavesLoading) {
+          <app-loader message="Loading leaves..."></app-loader>
+        }
+        @if (leavesError && !leavesLoading) {
+          <p class="text-red-500 text-sm text-center">
+            {{ leavesError }}
+          </p>
+        }
 
-        <app-card>
+        @if (!leavesLoading && !leavesError) {
           <h3 class="text-sm text-gray-500 dark:text-gray-400 mb-3">
             Leaves: Approved, Pending vs Rejected
           </h3>
@@ -70,8 +103,8 @@
               chartType="doughnut"
             ></canvas>
           </div>
-        </app-card>
-      </div>
+        }
+      </app-card>
     </div>
-  }
+  </div>
 </div>

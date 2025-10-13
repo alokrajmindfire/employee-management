@@ -1,16 +1,17 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { ProtectedLayout } from './protected-layout';
 
-describe('ProtectedLayout', () => {
-  let component: ProtectedLayout;
-  let fixture: ComponentFixture<ProtectedLayout>;
+import { Loader } from './loader';
+
+describe('Loader', () => {
+  let component: Loader;
+  let fixture: ComponentFixture<Loader>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [ProtectedLayout], // Import standalone component
+      imports: [Loader],
     }).compileComponents();
 
-    fixture = TestBed.createComponent(ProtectedLayout);
+    fixture = TestBed.createComponent(Loader);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

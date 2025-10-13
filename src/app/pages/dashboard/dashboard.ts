@@ -4,31 +4,39 @@ import { CommonModule } from '@angular/common';
 import { BaseChartDirective } from 'ng2-charts';
 import { Chart, registerables, ChartConfiguration, ChartOptions } from 'chart.js';
 import { Card } from '../../component/card/card';
+import { Loader } from '../../component/loader/loader';
 
 Chart.register(...registerables);
 
 @Component({
   selector: 'app-dashboard',
-  imports: [CommonModule, BaseChartDirective, Card],
+  standalone: true,
+  imports: [CommonModule, BaseChartDirective, Card, Loader],
   templateUrl: './dashboard.html',
 })
 export class Dashboard implements OnInit {
-  loading = true;
-  error: string | null = null;
+  // Individual loading and error states
+  tasksLoading = true;
+  tasksError: string | null = null;
 
+  leavesLoading = true;
+  leavesError: string | null = null;
+
+  // Chart data
   tasksChartData!: ChartConfiguration<'doughnut'>['data'];
   leavesChartData!: ChartConfiguration<'doughnut'>['data'];
 
+  // Chart options
   tasksChartOptions: ChartOptions<'doughnut'> = {
     responsive: true,
     plugins: { legend: { display: false } },
   };
-
   leavesChartOptions: ChartOptions<'doughnut'> = {
     responsive: true,
     plugins: { legend: { display: false } },
   };
 
+  // Summary
   summary = {
     tasks: { total: 0, completed: 0, pending: 0 },
     leaves: { total: 0, approved: 0, pending: 0, rejected: 0 },
@@ -37,40 +45,48 @@ export class Dashboard implements OnInit {
   private svc = inject(DashboardService);
 
   ngOnInit(): void {
-    this.load();
+    this.loadTasks();
+    this.loadLeaves();
   }
 
-  load() {
-    this.loading = true;
-    this.error = null;
-    this.svc.getAggregatedStats().subscribe({
-      next: (stats) => {
-        this.summary = stats;
-
+  loadTasks() {
+    this.tasksLoading = true;
+    this.tasksError = null;
+    this.svc.fetchTasks().subscribe({
+      next: (data) => {
+        this.summary.tasks = data;
         this.tasksChartData = {
           labels: ['Completed', 'Pending'],
-          datasets: [{ data: [this.summary.tasks.completed, this.summary.tasks.pending] }],
+          datasets: [{ data: [data.completed, data.pending] }],
         };
+        this.tasksLoading = false;
+      },
+      error: (err) => {
+        this.tasksError = err.message || 'Error loading tasks.';
+        this.tasksLoading = false;
+      },
+    });
+  }
 
+  loadLeaves() {
+    this.leavesLoading = true;
+    this.leavesError = null;
+    this.svc.fetchLeaves().subscribe({
+      next: (data) => {
+        this.summary.leaves = data;
         this.leavesChartData = {
           labels: ['Approved', 'Pending', 'Rejected'],
           datasets: [
             {
-              data: [
-                this.summary.leaves.approved,
-                this.summary.leaves.pending,
-                this.summary.leaves.rejected,
-              ],
+              data: [data.approved, data.pending, data.rejected],
             },
           ],
         };
-
-        this.loading = false;
+        this.leavesLoading = false;
       },
       error: (err) => {
-        this.error = 'Failed to load dashboard stats.';
-        console.error(err);
-        this.loading = false;
+        this.leavesError = err.message || 'Error loading leaves.';
+        this.leavesLoading = false;
       },
     });
   }

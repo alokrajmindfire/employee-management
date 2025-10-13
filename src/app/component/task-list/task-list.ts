@@ -2,9 +2,10 @@ import { Component, inject, signal } from '@angular/core';
 import { Task } from '../../core/services/task/task';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { Loader } from '../loader/loader';
 @Component({
   selector: 'app-task-list',
-  imports: [CommonModule, FormsModule],
+  imports: [CommonModule, FormsModule, Loader],
   templateUrl: './task-list.html',
 })
 export class TaskList {

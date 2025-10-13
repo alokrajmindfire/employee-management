@@ -5,11 +5,12 @@ import { Leave } from '../../../core/services/leave/leave';
 import { FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { RoleGuards } from '../../../core/guards/role/role-guards';
+import { Loader } from '../../../component/loader/loader';
 
 @Component({
   selector: 'app-leave-list',
   standalone: true,
-  imports: [CommonModule, LeavePipe, FormsModule, RouterModule],
+  imports: [CommonModule, LeavePipe, FormsModule, RouterModule, Loader],
   templateUrl: './leave-list.html',
 })
 export class LeaveList implements OnInit {
