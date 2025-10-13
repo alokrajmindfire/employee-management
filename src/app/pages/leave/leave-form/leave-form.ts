@@ -32,10 +32,10 @@ export class LeaveForm {
 
     this.leaveService.addLeave(leave);
     this.form.reset({
-    date: '',
-    type: 'Sick',
-    reason: ''
-  });
+      date: '',
+      type: 'Sick',
+      reason: '',
+    });
   }
   goBack(): void {
     this.location.back();
@@ -46,5 +46,4 @@ export class LeaveForm {
   year = this.today.getFullYear();
 
   minDate = new Date();
-  
 }

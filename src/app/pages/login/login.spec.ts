@@ -22,8 +22,8 @@ describe('Login Component', () => {
       imports: [Login, ReactiveFormsModule, CommonModule, Card, Theme],
       providers: [
         { provide: Auth, useValue: authSpy },
-        { provide: Router, useValue: routerSpy }
-      ]
+        { provide: Router, useValue: routerSpy },
+      ],
     }).compileComponents();
 
     fixture = TestBed.createComponent(Login);

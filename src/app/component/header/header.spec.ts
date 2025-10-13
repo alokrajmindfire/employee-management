@@ -12,14 +12,7 @@ describe('Header', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [
-        Header,
-        HttpClientTestingModule,
-        RouterTestingModule,
-        NavLinks,
-        UserMenu,
-        Theme
-      ],
+      imports: [Header, HttpClientTestingModule, RouterTestingModule, NavLinks, UserMenu, Theme],
     }).compileComponents();
 
     fixture = TestBed.createComponent(Header);

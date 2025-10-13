@@ -9,11 +9,7 @@ describe('ProtectedLayout', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [
-        ProtectedLayout,
-        HttpClientTestingModule,
-        RouterTestingModule
-      ],
+      imports: [ProtectedLayout, HttpClientTestingModule, RouterTestingModule],
     }).compileComponents();
 
     fixture = TestBed.createComponent(ProtectedLayout);

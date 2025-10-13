@@ -21,12 +21,10 @@ class MockLoader {}
 class MockCard {}
 
 class MockDashboardService {
-  fetchTasks = jasmine.createSpy().and.returnValue(
-    of({ total: 8, completed: 5, pending: 3 })
-  );
-  fetchLeaves = jasmine.createSpy().and.returnValue(
-    of({ total: 21, approved: 10, pending: 2, rejected: 9 })
-  );
+  fetchTasks = jasmine.createSpy().and.returnValue(of({ total: 8, completed: 5, pending: 3 }));
+  fetchLeaves = jasmine
+    .createSpy()
+    .and.returnValue(of({ total: 21, approved: 10, pending: 2, rejected: 9 }));
 }
 
 describe('Dashboard Component', () => {
@@ -36,12 +34,7 @@ describe('Dashboard Component', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [
-        HttpClientTestingModule,
-        Dashboard,
-        MockLoader,
-        MockCard,
-      ],
+      imports: [HttpClientTestingModule, Dashboard, MockLoader, MockCard],
       providers: [{ provide: DashboardService, useClass: MockDashboardService }],
     }).compileComponents();
 
@@ -99,7 +92,7 @@ describe('Dashboard Component', () => {
 
       const values = fixture.debugElement
         .queryAll(By.css('div.text-3xl'))
-        .map(el => el.nativeElement.textContent.trim());
+        .map((el) => el.nativeElement.textContent.trim());
       expect(values).toContain('5');
       expect(values).toContain('3');
     }));
@@ -145,7 +138,7 @@ describe('Dashboard Component', () => {
 
       const values = fixture.debugElement
         .queryAll(By.css('div.text-3xl'))
-        .map(el => el.nativeElement.textContent.trim());
+        .map((el) => el.nativeElement.textContent.trim());
       expect(values).toContain('10');
       expect(values).toContain('2');
     }));

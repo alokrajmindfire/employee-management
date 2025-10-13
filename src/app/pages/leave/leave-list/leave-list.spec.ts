@@ -28,14 +28,7 @@ describe('LeaveList', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [
-        LeaveList,   
-        CommonModule,
-        FormsModule,
-        RouterTestingModule,
-        Loader,
-        LeavePipe,
-      ],
+      imports: [LeaveList, CommonModule, FormsModule, RouterTestingModule, Loader, LeavePipe],
       providers: [
         { provide: Leave, useClass: LeaveStub },
         { provide: RoleGuards, useClass: RoleGuardsStub },
