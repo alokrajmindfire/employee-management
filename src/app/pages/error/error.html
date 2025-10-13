@@ -1,0 +1,11 @@
+<div
+  class="max-w-xl mx-auto mt-20 p-6 rounded-lg border border-red-300 bg-red-50 text-red-800 shadow"
+>
+  <h1 class="text-2xl font-bold mb-4">An error occurred</h1>
+
+  @if (message; as msg) {
+    <p class="text-base">{{ msg }}</p>
+  } @else {
+    <p class="text-base">No error message available.</p>
+  }
+</div>

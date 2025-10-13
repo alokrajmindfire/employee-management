@@ -14,8 +14,9 @@ export class LeaveForm {
   private fb = inject(FormBuilder);
   private leaveService = inject(Leave);
   private location = inject(Location);
+
   form = this.fb.group({
-    date: ['', [Validators.required, futureDateValidator()]], // <-- fixed
+    date: ['', [Validators.required, futureDateValidator()]],
     type: ['Sick', Validators.required],
     reason: ['', [Validators.required, Validators.minLength(5)]],
   });
