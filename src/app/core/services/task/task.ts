@@ -3,10 +3,12 @@ import { HttpClient } from '@angular/common/http';
 import { ITask } from '../../../types/task';
 import { catchError, finalize, tap } from 'rxjs';
 import { of } from 'rxjs';
+import { ToastService } from '../toast/toast.service.ts';
 
 @Injectable({ providedIn: 'root' })
 export class Task {
   private http = inject(HttpClient);
+  private toast = inject(ToastService);
 
   private _tasks = signal<ITask[]>([]);
   private _filter = signal<'all' | 'completed' | 'pending'>('all');
@@ -55,8 +57,12 @@ export class Task {
       .post<ITask>('https://jsonplaceholder.typicode.com/todos', newTask)
       .pipe(
         tap((task) => this._tasks.update((tasks) => [...tasks, task])),
-        finalize(() => this._loading.set(false)),
+        finalize(() => {
+          this.toast.show('Task added successful!', 'success');
+          this._loading.set(false);
+        }),
         catchError((err) => {
+          this.toast.show('Error adding task', 'error');
           console.error('Error adding task', err);
           return of(null);
         }),
@@ -75,8 +81,12 @@ export class Task {
       .put<ITask>(`https://jsonplaceholder.typicode.com/todos/${id}`, updated)
       .pipe(
         tap(() => this._tasks.update((tasks) => tasks.map((t) => (t.id === id ? updated : t)))),
-        finalize(() => this._loading.set(false)),
+        finalize(() => {
+          this.toast.show('Task updated successful!', 'success');
+          this._loading.set(false);
+        }),
         catchError((err) => {
+          this.toast.show('Error while updating', 'error');
           console.error('Error toggling task', err);
           return of(null);
         }),
@@ -90,8 +100,12 @@ export class Task {
       .delete(`https://jsonplaceholder.typicode.com/todos/${id}`)
       .pipe(
         tap(() => this._tasks.update((tasks) => tasks.filter((t) => t.id !== id))),
-        finalize(() => this._loading.set(false)),
+        finalize(() => {
+          this.toast.show('Task deleted successful!', 'success');
+          this._loading.set(false);
+        }),
         catchError((err) => {
+          this.toast.show('Error deleting task!', 'error');
           console.error('Error deleting task', err);
           return of(null);
         }),
@@ -110,8 +124,12 @@ export class Task {
       .put<ITask>(`https://jsonplaceholder.typicode.com/todos/${id}`, updated)
       .pipe(
         tap(() => this._tasks.update((tasks) => tasks.map((t) => (t.id === id ? updated : t)))),
-        finalize(() => this._loading.set(false)),
+        finalize(() => {
+          this.toast.show('Task updated successful!', 'success');
+          this._loading.set(false);
+        }),
         catchError((err) => {
+          this.toast.show('Error editing task!', 'error');
           console.error('Error editing task', err);
           return of(null);
         }),
